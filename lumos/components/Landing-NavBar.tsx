@@ -33,13 +33,13 @@ const LandingNavbar = () => {
     //     </Link>
     //   </div>
     // </nav>
-    <nav className="px-12 py-6 bg-transparent flex items-center justify-between text-white border-b-[1px] border-gray-800">
+    <nav className="px-4 md:px-12 py-6 bg-transparent flex items-center justify-between text-white border-b-[1px] border-gray-800">
       <div>
         <Link href="/" className="flex items-center">
           <div className="relative h-8 w-8 mr-3">
             <Image fill alt="Logo" src="/logo.png" />
           </div>
-          <h1 className={cn("text-2xl font-bold text-white", font.className)}>
+          <h1 className={cn("text-md md:text-2xl font-bold text-white", font.className)}>
             Lumos AI
           </h1>
         </Link>
