@@ -13,7 +13,7 @@ const LandingHero = () => {
     <div className="text-white font-bold py-36 text-center space-y-5">
       <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
         <h1>The Best AI tool for</h1>
-        <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+        <div className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
           <TypewriterComponent
             options={{
               strings: [
@@ -35,8 +35,7 @@ const LandingHero = () => {
       <div>
         <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
           <Button
-            variant="premium"
-            className="md:text-lg p-4 md:p-6 rounded-full font-semibold"
+            className="md:text-lg p-4 md:p-6 rounded-lg bg-blue-600 hover:bg-blue-700 hover:shadow-[0px_0px_9px_3px_#CBD5E0] duration-700 transition delay-600 font-semibold"
           >
             Get Started For Free
           </Button>
