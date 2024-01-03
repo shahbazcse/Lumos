@@ -22,7 +22,7 @@ const Heading = ({
       <div className={cn("p-2 w-fit rounded-md", bgColor)}>
         <Icon className={cn("h-10 w-10", iconColor)} />
       </div>
-      <div>
+      <div className="flex flex-col gap-1 justify-between">
         <h2 className={cn("text-3xl font-bold")}>{title}</h2>
         <p className="text-sm text-muted-foreground">{description}</p>
       </div>
