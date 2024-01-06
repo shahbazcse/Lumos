@@ -7,19 +7,26 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { MessageSquare } from "lucide-react";
+import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { cn } from "@/lib/utils";
 
 import { formSchema } from "./constants";
 
-import Heading from "@/components/Heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import Heading from "@/components/Heading";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { Empty } from "@/components/Empty";
+import { Loader } from "@/components/Loader";
+import { UserAvatar } from "@/components/UserAvatar";
+import { BotAvatar } from "@/components/BotAvatar";
 
 const ConversationPage: any = () => {
   const router = useRouter();
 
-  const [messages, setMessages] = useState<ChatCompletionMessageParam[] | any[]>([]);
+  const [messages, setMessages] = useState<
+    ChatCompletionMessageParam[] | any[]
+  >([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -93,10 +100,29 @@ const ConversationPage: any = () => {
             </form>
           </Form>
         </div>
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-4 pb-8">
+          {isLoading && (
+            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+              <Loader />
+            </div>
+          )}
+          {messages.length === 0 && !isLoading && (
+            <Empty label="Start Conversation Now!" />
+          )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message, index) => (
-              <div key={index}>{message.content}</div>
+              <div
+                key={index}
+                className={cn(
+                  "p-8 w-full flex items-start gap-x-4 rounded-lg",
+                  message.role === "user"
+                    ? "bg-white border border-black/10"
+                    : "bg-muted"
+                )}
+              >
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                <p className="text-sm mt-1">{message.content}</p>
+              </div>
             ))}
           </div>
         </div>
