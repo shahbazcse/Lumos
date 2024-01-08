@@ -11,7 +11,7 @@ const montserrat = Montserrat({
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex items-center justify-center h-full bg-[#000000]">
-      <div className="flex items-center justify-center gap-1.5 relative mb-[37rem]">
+      <div className="flex items-center justify-center gap-1.5 relative mb-[39rem] sm:mb-[37rem]">
         <div className="relative w-8 h-8 mr-3">
           <Image fill alt="Logo" src="/logo.png" />
         </div>
