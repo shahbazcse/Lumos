@@ -66,8 +66,8 @@ const CodePage: any = () => {
         title="Code Generation"
         description="Generate code using descriptive text."
         icon={Code}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
       <div className="px-8 lg:px-16">
         <div>
@@ -84,7 +84,7 @@ const CodePage: any = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="What is the radius of Earth?"
+                        placeholder="Simple counter component using react hooks and tailwindcss"
                         {...field}
                       />
                     </FormControl>
