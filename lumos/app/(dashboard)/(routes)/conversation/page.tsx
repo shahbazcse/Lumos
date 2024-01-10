@@ -107,7 +107,7 @@ const ConversationPage: any = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label="Start Conversation Now!" />
+            <Empty image={"/chatbot.png"} label="Start Conversation Now!" />
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message, index) => (
@@ -120,7 +120,7 @@ const ConversationPage: any = () => {
                     : "bg-muted"
                 )}
               >
-                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar avatar={"/chatbot.png"} />}
                 <p className="text-sm mt-1">{message.content}</p>
               </div>
             ))}

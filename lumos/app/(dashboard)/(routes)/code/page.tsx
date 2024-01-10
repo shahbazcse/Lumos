@@ -107,7 +107,7 @@ const CodePage: any = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label="Start Conversation Now!" />
+            <Empty image={"/code.png"} label="Generate Code Now!" />
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message, index) => (
@@ -120,7 +120,7 @@ const CodePage: any = () => {
                     : "bg-muted"
                 )}
               >
-                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar avatar={"/code.png"} />}
                 <p className="text-sm mt-1">{message.content}</p>
               </div>
             ))}
