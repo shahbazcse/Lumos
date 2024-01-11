@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Code } from "lucide-react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { cn } from "@/lib/utils";
+import ReactMarkdown from "react-markdown";
 
 import { formSchema } from "./constants";
 
@@ -120,8 +121,26 @@ const CodePage: any = () => {
                     : "bg-muted"
                 )}
               >
-                {message.role === "user" ? <UserAvatar /> : <BotAvatar avatar={"/code.png"} />}
-                <p className="text-sm mt-1">{message.content}</p>
+                {message.role === "user" ? (
+                  <UserAvatar />
+                ) : (
+                  <BotAvatar avatar={"/code.png"} />
+                )}
+                <ReactMarkdown
+                  className="text-sm overflow-hidden leading-7"
+                  components={{
+                    pre: ({ node, ...props }) => (
+                      <div className="overflow-auto w-full my-4 bg-[#1D1E1F] text-white p-2 rounded-lg">
+                        <pre {...props} />
+                      </div>
+                    ),
+                    code: ({ node, ...props }) => (
+                      <code className="bg-black/10 rounded-lg p-1" {...props} />
+                    ),
+                  }}
+                >
+                  {message.content}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
