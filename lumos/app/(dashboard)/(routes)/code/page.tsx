@@ -130,7 +130,7 @@ const CodePage: any = () => {
                   className="text-sm overflow-hidden leading-7"
                   components={{
                     pre: ({ node, ...props }) => (
-                      <div className="overflow-auto w-full my-4 bg-[#1D1E1F] text-white p-2 rounded-lg">
+                      <div className="overflow-auto w-full my-4 bg-[#20262E] text-white p-2 rounded-lg">
                         <pre {...props} />
                       </div>
                     ),
