@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ImageIcon } from "lucide-react";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { cn } from "@/lib/utils";
 
 import { formSchema } from "./constants";
@@ -23,15 +22,14 @@ import { BotAvatar } from "@/components/BotAvatar";
 
 const ImagePage: any = () => {
   const router = useRouter();
-
-  const [messages, setMessages] = useState<
-    ChatCompletionMessageParam[] | any[]
-  >([]);
+  const [images, setImages] = useState<string[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
+      amount: "1",
+      resolution: "512x512",
     },
   });
 
@@ -39,17 +37,11 @@ const ImagePage: any = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: ChatCompletionMessageParam | any[] = {
-        role: "user",
-        content: values.prompt,
-      };
-      const newMessages = [...messages, userMessage];
+      setImages([]);
+      const response = await axios.post("/api/image", values);
 
-      const response = await axios.post("/api/conversation", {
-        messages: newMessages,
-      });
-
-      setMessages((curr) => [...curr, userMessage, response.data]);
+      const urls = response.data.map((image: { url: string }) => image.url);
+      setImages(urls);
 
       form.reset();
     } catch (error: any) {
@@ -102,33 +94,14 @@ const ImagePage: any = () => {
         </div>
         <div className="space-y-4 mt-4 pb-8">
           {isLoading && (
-            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+            <div className="p-20">
               <Loader />
             </div>
           )}
-          {messages.length === 0 && !isLoading && (
-            <Empty image={"/chatbot.png"} label="Start Conversation Now!" />
+          {images.length === 0 && !isLoading && (
+            <Empty image={"/chatbot.png"} label="Generate Images Now!" />
           )}
-          <div className="flex flex-col-reverse gap-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "p-8 w-full flex items-start gap-x-4 rounded-lg",
-                  message.role === "user"
-                    ? "bg-white border border-black/10"
-                    : "bg-muted"
-                )}
-              >
-                {message.role === "user" ? (
-                  <UserAvatar />
-                ) : (
-                  <BotAvatar avatar={"/chatbot.png"} />
-                )}
-                <p className="text-sm mt-1">{message.content}</p>
-              </div>
-            ))}
-          </div>
+          <div>Images will be rendered here</div>
         </div>
       </div>
     </div>
