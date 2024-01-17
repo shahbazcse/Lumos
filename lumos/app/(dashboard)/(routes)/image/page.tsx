@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Download, ImageIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 
@@ -24,8 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { UserAvatar } from "@/components/UserAvatar";
-import { BotAvatar } from "@/components/BotAvatar";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 
