@@ -171,7 +171,8 @@ const ImagePage: any = () => {
                   <Button
                     variant="secondary"
                     className="w-full"
-                    onClick={() => window.open(src)}
+                    onClick={() => {window.open(src); console.log(src);
+                    }}
                   >
                     <Download className="h-4 w-4 mr-2" />
                     Download
