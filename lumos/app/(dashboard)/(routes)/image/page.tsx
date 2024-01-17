@@ -165,13 +165,15 @@ const ImagePage: any = () => {
             {images.map((src) => (
               <Card key={src} className="rounded-lg overflow-hidden">
                 <div className="relative aspect-square">
-                  <Image src={src} width={500} height={500} alt="Image" />
+                  <Image src={src} fill alt="Image" />
                 </div>
                 <CardFooter className="p-2">
                   <Button
                     variant="secondary"
                     className="w-full"
-                    onClick={() => {window.open(src); console.log(src);
+                    onClick={() => {
+                      window.open(src);
+                      console.log(src);
                     }}
                   >
                     <Download className="h-4 w-4 mr-2" />
