@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ImageIcon } from "lucide-react";
+import { Download, ImageIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/select";
 import { UserAvatar } from "@/components/UserAvatar";
 import { BotAvatar } from "@/components/BotAvatar";
+import { Card, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
 
 const ImagePage: any = () => {
   const router = useRouter();
@@ -162,7 +164,25 @@ const ImagePage: any = () => {
           {images.length === 0 && !isLoading && (
             <Empty image={"/chatbot.png"} label="Generate Images Now!" />
           )}
-          <div>Images will be rendered here</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+            {images.map((src) => (
+              <Card key={src} className="rounded-lg overflow-hidden">
+                <div className="relative aspect-square">
+                  <Image src={src} fill alt="Image" />
+                </div>
+                <CardFooter className="p-2">
+                  <Button
+                    variant="secondary"
+                    className="w-full"
+                    onClick={() => window.open(src)}
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
