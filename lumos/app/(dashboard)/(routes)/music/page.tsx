@@ -7,8 +7,6 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Music } from "lucide-react";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import { cn } from "@/lib/utils";
 
 import { formSchema } from "./constants";
 
@@ -18,15 +16,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
-import { UserAvatar } from "@/components/UserAvatar";
-import { BotAvatar } from "@/components/BotAvatar";
 
-const ConversationPage: any = () => {
+const MusicPage: any = () => {
   const router = useRouter();
 
-  const [messages, setMessages] = useState<
-    ChatCompletionMessageParam[] | any[]
-  >([]);
+  const [music, setMusic] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,17 +33,11 @@ const ConversationPage: any = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: ChatCompletionMessageParam | any[] = {
-        role: "user",
-        content: values.prompt,
-      };
-      const newMessages = [...messages, userMessage];
+      setMusic(undefined);
 
-      const response = await axios.post("/api/conversation", {
-        messages: newMessages,
-      });
+      const response = await axios.post("/api/music", values);
 
-      setMessages((curr) => [...curr, userMessage, response.data]);
+      setMusic(response.data.audio);
 
       form.reset();
     } catch (error: any) {
@@ -66,8 +54,8 @@ const ConversationPage: any = () => {
         title="Music"
         description="Compose music from your fingertips."
         icon={Music}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        iconColor="text-emerald-500"
+        bgColor="bg-emerald-500/10"
       />
       <div className="px-8 lg:px-16">
         <div>
@@ -84,7 +72,7 @@ const ConversationPage: any = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="What is the radius of Earth?"
+                        placeholder="Piano composition of Für Elise"
                         {...field}
                       />
                     </FormControl>
@@ -106,33 +94,14 @@ const ConversationPage: any = () => {
               <Loader />
             </div>
           )}
-          {messages.length === 0 && !isLoading && (
+          {!music && !isLoading && (
             <Empty image={"/music.png"} label="Generate music now!" />
           )}
-          <div className="flex flex-col-reverse gap-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={cn(
-                  "p-8 w-full flex items-start gap-x-4 rounded-lg",
-                  message.role === "user"
-                    ? "bg-white border border-black/10"
-                    : "bg-muted"
-                )}
-              >
-                {message.role === "user" ? (
-                  <UserAvatar />
-                ) : (
-                  <BotAvatar avatar={"/chatbot.png"} />
-                )}
-                <p className="text-sm mt-1">{message.content}</p>
-              </div>
-            ))}
-          </div>
+          <div>Music will be generated here</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ConversationPage;
+export default MusicPage;
