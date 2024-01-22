@@ -72,7 +72,7 @@ const MusicPage: any = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="Piano composition of Für Elise"
+                        placeholder="Piano solo"
                         {...field}
                       />
                     </FormControl>
@@ -97,7 +97,13 @@ const MusicPage: any = () => {
           {!music && !isLoading && (
             <Empty image={"/music.png"} label="Generate music now!" />
           )}
-          <div>Music will be generated here</div>
+          <div>
+            {music && (
+              <audio controls className="w-full mt-8">
+                <source src={music} />
+              </audio>
+            )}
+          </div>
         </div>
       </div>
     </div>
