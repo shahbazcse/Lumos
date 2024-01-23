@@ -95,7 +95,7 @@ const VideoPage: any = () => {
             </div>
           )}
           {!music && !isLoading && (
-            <Empty image={"/music.png"} label="Generate music now!" />
+            <Empty image={"/video.png"} label="Generate video now!" />
           )}
           <div>Video will be generated here</div>
         </div>
