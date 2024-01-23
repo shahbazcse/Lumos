@@ -20,7 +20,7 @@ import { Loader } from "@/components/Loader";
 const VideoPage: any = () => {
   const router = useRouter();
 
-  const [music, setMusic] = useState<string>();
+  const [video, setVideo] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -33,11 +33,11 @@ const VideoPage: any = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setMusic(undefined);
+      setVideo(undefined);
 
       const response = await axios.post("/api/music", values);
 
-      setMusic(response.data.audio);
+      setVideo(response.data.audio);
 
       form.reset();
     } catch (error: any) {
@@ -94,7 +94,7 @@ const VideoPage: any = () => {
               <Loader />
             </div>
           )}
-          {!music && !isLoading && (
+          {!video && !isLoading && (
             <Empty image={"/video.png"} label="Generate video now!" />
           )}
           <div>Video will be generated here</div>
