@@ -107,7 +107,7 @@ const ConversationPage: any = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty image={"/chatbot.png"} label="Start Conversation Now!" />
+            <Empty image={"/conversation.png"} label="Start Conversation Now!" />
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message, index) => (
