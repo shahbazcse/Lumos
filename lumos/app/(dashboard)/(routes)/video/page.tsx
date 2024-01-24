@@ -72,7 +72,7 @@ const VideoPage: any = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="Sunset on a beach"
+                        placeholder="Dinosaur walking near a lake"
                         {...field}
                       />
                     </FormControl>
