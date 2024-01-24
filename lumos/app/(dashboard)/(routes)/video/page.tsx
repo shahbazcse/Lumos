@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Video } from "lucide-react";
+import { VideoIcon } from "lucide-react";
 
 import { formSchema } from "./constants";
 
@@ -35,9 +35,9 @@ const VideoPage: any = () => {
     try {
       setVideo(undefined);
 
-      const response = await axios.post("/api/music", values);
+      const response = await axios.post("/api/video", values);
 
-      setVideo(response.data.audio);
+      setVideo(response.data[0]);
 
       form.reset();
     } catch (error: any) {
@@ -53,9 +53,9 @@ const VideoPage: any = () => {
       <Heading
         title="Video"
         description="AI generated video using prompts."
-        icon={Video}
-        iconColor="text-orange-500"
-        bgColor="bg-orange-500/10"
+        icon={VideoIcon}
+        iconColor="text-orange-700"
+        bgColor="bg-orange-700/10"
       />
       <div className="px-8 lg:px-16">
         <div>
@@ -97,7 +97,16 @@ const VideoPage: any = () => {
           {!video && !isLoading && (
             <Empty image={"/video.png"} label="Generate video now!" />
           )}
-          <div>Video will be generated here</div>
+          <div>
+            {video && (
+              <video
+                className="w-full aspect-video mt-8 rounded-lg border bg-black"
+                controls
+              >
+                <source src={video} />
+              </video>
+            )}
+          </div>
         </div>
       </div>
     </div>
