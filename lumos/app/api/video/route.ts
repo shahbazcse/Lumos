@@ -28,9 +28,8 @@ export async function POST(req: Request) {
         },
       }
     );
-    setTimeout(() => {
-      return NextResponse.json(response);
-    }, 1000 * 65);
+
+    return NextResponse.json(response);
   } catch (error) {
     console.log("[VIDEO_ERROR]", error);
     return new NextResponse("Internal Error", { status: 500 });
