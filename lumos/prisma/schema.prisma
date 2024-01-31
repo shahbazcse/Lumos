@@ -5,6 +5,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// TODO: Move to MongoDB, Planet Scale not available for India
+
 datasource db {
   provider  = "postgres"
   url       = env("DATABASE_URL")
