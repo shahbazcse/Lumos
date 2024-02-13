@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Montserrat } from "next/font/google";
-import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   MessageSquare,
@@ -15,6 +14,9 @@ import {
   Code,
   Settings,
 } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import FreeCounter from "./FreeCounter";
 
 const montserrat = Montserrat({
   weight: "600",
@@ -65,7 +67,7 @@ const routes = [
   },
 ];
 
-const SideBar = () => {
+const SideBar = ({ apiLimitCount = 0 }: { apiLimitCount: number }) => {
   const pathname = usePathname();
 
   return (
@@ -84,7 +86,12 @@ const SideBar = () => {
             <Link
               href={route.href}
               key={route.href}
-              className={cn("text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition", pathname === route.href ? "text-white bg-white/10" : "text-zinc-400")}
+              className={cn(
+                "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition",
+                pathname === route.href
+                  ? "text-white bg-white/10"
+                  : "text-zinc-400"
+              )}
             >
               <div className="flex items-center flex-1">
                 <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
@@ -94,6 +101,7 @@ const SideBar = () => {
           ))}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 };
