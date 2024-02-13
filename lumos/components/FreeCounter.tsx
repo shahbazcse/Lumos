@@ -30,7 +30,7 @@ const FreeCounter = ({ apiLimitCount = 0 }: { apiLimitCount: number }) => {
             />
           </div>
           <Button className="w-full bg-blue-600 hover:bg-blue-700">
-            Upgrade
+            Upgrade to Pro
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>
         </CardContent>
