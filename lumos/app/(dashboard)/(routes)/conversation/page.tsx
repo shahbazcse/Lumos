@@ -20,8 +20,11 @@ import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
 import { UserAvatar } from "@/components/UserAvatar";
 import { BotAvatar } from "@/components/BotAvatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const ConversationPage: any = () => {
+  const proModal = useProModal();
+  
   const router = useRouter();
 
   const [messages, setMessages] = useState<
@@ -53,8 +56,9 @@ const ConversationPage: any = () => {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
@@ -107,7 +111,10 @@ const ConversationPage: any = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty image={"/conversation.png"} label="Start Conversation Now!" />
+            <Empty
+              image={"/conversation.png"}
+              label="Start Conversation Now!"
+            />
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message, index) => (
@@ -120,7 +127,11 @@ const ConversationPage: any = () => {
                     : "bg-muted"
                 )}
               >
-                {message.role === "user" ? <UserAvatar /> : <BotAvatar avatar={"/chatbot.png"} />}
+                {message.role === "user" ? (
+                  <UserAvatar />
+                ) : (
+                  <BotAvatar avatar={"/chatbot.png"} />
+                )}
                 <p className="text-sm mt-1">{message.content}</p>
               </div>
             ))}

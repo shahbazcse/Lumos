@@ -21,8 +21,11 @@ import { Empty } from "@/components/Empty";
 import { Loader } from "@/components/Loader";
 import { UserAvatar } from "@/components/UserAvatar";
 import { BotAvatar } from "@/components/BotAvatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const CodePage: any = () => {
+  const proModal = useProModal();
+
   const router = useRouter();
 
   const [messages, setMessages] = useState<
@@ -54,8 +57,9 @@ const CodePage: any = () => {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
