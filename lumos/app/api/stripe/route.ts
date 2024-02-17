@@ -6,7 +6,7 @@ import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 
 const settingsUrl =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === "production"
     ? absoluteUrl("/settings")
     : "http://localhost:3000/settings";
 
