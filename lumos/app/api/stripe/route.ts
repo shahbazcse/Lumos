@@ -5,7 +5,10 @@ import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 
-const settingsUrl = absoluteUrl("/settings");
+const settingsUrl =
+  process.env.NODE_ENV === "development"
+    ? absoluteUrl("/settings")
+    : "http://localhost:3000/settings";
 
 export async function GET() {
   try {
