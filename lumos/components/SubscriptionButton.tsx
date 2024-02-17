@@ -25,7 +25,11 @@ const SubscriptionButton = ({ isPro = false }: SubscriptionButtonProps) => {
     }
   };
   return (
-    <Button disabled={loading} onClick={handleSubscription} className="">
+    <Button
+      disabled={loading}
+      onClick={handleSubscription}
+      className={`${!isPro && "bg-blue-600 hover:bg-blue-700"}`}
+    >
       {isPro ? "Manage Subscription" : "Upgrade to Pro"}
       {!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}
     </Button>
