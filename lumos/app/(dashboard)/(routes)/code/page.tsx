@@ -10,6 +10,7 @@ import { Code } from "lucide-react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import toast from "react-hot-toast";
 
 import { formSchema } from "./constants";
 
@@ -59,6 +60,8 @@ const CodePage: any = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something Went Wrong.");
       }
     } finally {
       router.refresh();

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { MessageSquare } from "lucide-react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { cn } from "@/lib/utils";
@@ -24,7 +25,7 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 const ConversationPage: any = () => {
   const proModal = useProModal();
-  
+
   const router = useRouter();
 
   const [messages, setMessages] = useState<
@@ -58,6 +59,8 @@ const ConversationPage: any = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something Went Wrong.");
       }
     } finally {
       router.refresh();
