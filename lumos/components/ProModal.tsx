@@ -106,6 +106,7 @@ const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
+            disabled={loading}
             onClick={onSubscribe}
             size="lg"
             className="w-full bg-blue-600 hover:bg-blue-700"
