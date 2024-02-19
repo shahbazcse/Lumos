@@ -45,8 +45,11 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(response);
-  } catch (error) {
+  } catch (error: any) {
     console.log("[VIDEO_ERROR]", error);
+    if (error?.response?.status === 402) {
+      return new NextResponse("Free Limit Exhausted!", { status: 402 });
+    }
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

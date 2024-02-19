@@ -53,8 +53,11 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(response.data);
-  } catch (error) {
+  } catch (error: any) {
     console.log("[IMAGE_ERROR]", error);
+    if (error?.response?.status === 402) {
+      return new NextResponse("Free Limit Exhausted!", { status: 402 });
+    }
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

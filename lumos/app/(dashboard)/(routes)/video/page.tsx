@@ -47,6 +47,10 @@ const VideoPage: any = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else if (error?.response?.status === 402) {
+        toast.error("Free Limit Exhausted", {
+          icon: "⚠️",
+        });
       } else {
         toast.error("Something Went Wrong.");
       }

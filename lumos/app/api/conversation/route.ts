@@ -44,8 +44,11 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(response.choices[0].message);
-  } catch (error) {
+  } catch (error: any) {
     console.log("[CONVERSATION_ERROR]", error);
+    if (error?.response?.status === 402) {
+      return new NextResponse("Free Limit Exhausted!", { status: 402 });
+    }
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
