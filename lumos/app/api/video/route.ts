@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       return new NextResponse("Free trial has expired", { status: 403 });
     }
 
-    // API taking more than 10s, move this API to firebase
+    // TODO: Free limit reached, try other AI models
     const response = await replicate.run(
       "anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
       {
