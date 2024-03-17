@@ -1,30 +1,18 @@
-import { cn } from "@/lib/utils";
-import { Montserrat } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
+import SideBar from "@/components/SideBar-new";
 import React from "react";
+import { clerkClient } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 
-const montserrat = Montserrat({
-  weight: "600",
-  subsets: ["latin"],
-});
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  const { userId } = auth() as any;
+  const user = await clerkClient.users.getUser(userId);
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const email = user.emailAddresses[0].emailAddress;
+  const name = `${user.firstName} ${user.lastName}`;
+
   return (
     <div className="h-full relative bg-[#090C2A] text-white">
-      <div className="hidden items-center h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 border-r border-gray-800">
-        <div className="py-8">
-          <Link href="/dashboard-new" className="flex items-center">
-            <div className="relative w-7 h-7 mr-3">
-              <Image fill alt="Logo" src="/logo.png" />
-            </div>
-            <h1 className={cn("text-2xl font-bold", montserrat.className)}>
-              Lumos AI
-            </h1>
-          </Link>
-        </div>
-        <div></div>
-      </div>
+      <SideBar email={email} name={name} />
       <main className="md:pl-72">
         <div className="h-24 w-full border-b border-gray-800"></div>
         <div>{children}</div>
