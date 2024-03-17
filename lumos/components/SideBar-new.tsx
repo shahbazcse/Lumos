@@ -97,8 +97,8 @@ const SideBar = ({ email, name }: UserProp) => {
         </div>
         <div className="flex flex-col px-3 w-full h-full mt-4">
           <div className="flex flex-col space-y-6">
-            <p className="ml-4 text-lg font-[raleway] tracking-wide">Create</p>
-            <div className="flex flex-col space-y-4 px-4 items-start justify-center">
+            <p className="ml-2 text-lg font-[raleway] tracking-wide">Create</p>
+            <div className="flex flex-col space-y-4 px-3 items-start justify-center">
               {routes.slice(0, 6).map((route) => (
                 <Link
                   href={route.href}
@@ -120,8 +120,8 @@ const SideBar = ({ email, name }: UserProp) => {
           </div>
           <Separator className="my-8 w-56 mx-auto bg-gray-800" />
           <div className="flex flex-col space-y-6">
-            <p className="ml-4 text-lg font-[raleway] tracking-wide">Manage</p>
-            <div className="flex flex-col space-y-4 px-4 items-start justify-center">
+            <p className="ml-2 text-lg font-[raleway] tracking-wide">Manage</p>
+            <div className="flex flex-col space-y-4 px-3 items-start justify-center">
               {routes.slice(6, 8).map((route) => (
                 <Link
                   href={route.href}
