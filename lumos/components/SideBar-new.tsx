@@ -95,7 +95,7 @@ const SideBar = ({ email, name }: UserProp) => {
             </h1>
           </Link>
         </div>
-        <div className="flex flex-col px-3 w-full h-full">
+        <div className="flex flex-col px-3 w-full h-full mt-4">
           <div className="flex flex-col space-y-6">
             <p className="ml-4 text-lg font-[raleway] tracking-wide">Create</p>
             <div className="flex flex-col space-y-4 px-6 items-start justify-center">
