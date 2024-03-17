@@ -44,25 +44,25 @@ const routes = [
     color: "text-violet-400",
   },
   {
-    label: "Image Generation",
+    label: "Image",
     icon: LuImage,
     href: "/image",
     color: "text-pink-700",
   },
   {
-    label: "Video Generation",
+    label: "Video",
     icon: LuVideo,
     href: "/video",
     color: "text-orange-700",
   },
   {
-    label: "Music Generation",
+    label: "Music",
     icon: LuMusic,
     href: "/music",
     color: "text-emerald-500",
   },
   {
-    label: "Code Generation",
+    label: "Code",
     icon: LuCode2,
     href: "/code",
     color: "text-green-500",
@@ -98,20 +98,20 @@ const SideBar = ({ email, name }: UserProp) => {
         <div className="flex flex-col px-3 w-full h-full mt-4">
           <div className="flex flex-col space-y-6">
             <p className="ml-4 text-lg font-[raleway] tracking-wide">Create</p>
-            <div className="flex flex-col space-y-4 px-6 items-start justify-center">
+            <div className="flex flex-col space-y-4 px-4 items-start justify-center">
               {routes.slice(0, 6).map((route) => (
                 <Link
                   href={route.href}
                   key={route.href}
                   className={cn(
-                    "text-sm group flex px-5 py-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-blue-400/10 rounded-full transition",
+                    "text-md group flex px-5 py-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-blue-400/10 rounded-full transition",
                     pathname === route.href
                       ? "text-white bg-gradient-to-r from-indigo-700 to-indigo-600"
                       : "text-zinc-300"
                   )}
                 >
                   <div className="flex items-center flex-1">
-                    <route.icon className={cn("h-6 w-6 mr-3", route.color)} />
+                    <route.icon className={cn("h-6 w-6 mr-4", route.color)} />
                     {route.label}
                   </div>
                 </Link>
@@ -121,20 +121,20 @@ const SideBar = ({ email, name }: UserProp) => {
           <Separator className="my-8 w-56 mx-auto bg-gray-800" />
           <div className="flex flex-col space-y-6">
             <p className="ml-4 text-lg font-[raleway] tracking-wide">Manage</p>
-            <div className="flex flex-col space-y-4 px-6 items-start justify-center">
+            <div className="flex flex-col space-y-4 px-4 items-start justify-center">
               {routes.slice(6, 8).map((route) => (
                 <Link
                   href={route.href}
                   key={route.href}
                   className={cn(
-                    "text-sm group flex px-5 py-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-blue-400/10 rounded-full transition",
+                    "text-md group flex px-5 py-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-blue-400/10 rounded-full transition",
                     pathname === route.href
                       ? "text-white bg-gradient-to-r from-indigo-700 to-indigo-600"
                       : "text-zinc-300"
                   )}
                 >
                   <div className="flex items-center flex-1">
-                    <route.icon className={cn("h-6 w-6 mr-3", route.color)} />
+                    <route.icon className={cn("h-6 w-6 mr-4", route.color)} />
                     {route.label}
                   </div>
                 </Link>
