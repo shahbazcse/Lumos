@@ -6,6 +6,7 @@ import { dark } from "@clerk/themes";
 import ModalProvider from "@/components/ModalProvider";
 import ToasterProvider from "@/components/ToasterProvider";
 import CrispProvider from "@/components/CrispProvider";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +27,19 @@ export default function RootLayout({
       }}
     >
       <html lang="en">
-        <CrispProvider />
-        <body className={inter.className}>
-          <ModalProvider />
-          <ToasterProvider />
-          {children}
-        </body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <CrispProvider />
+          <body className={inter.className}>
+            <ModalProvider />
+            <ToasterProvider />
+            {children}
+          </body>
+        </ThemeProvider>
       </html>
     </ClerkProvider>
   );
