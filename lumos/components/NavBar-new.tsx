@@ -19,7 +19,7 @@ const NavBar = () => {
         <LuSearch className="absolute h-5 w-5 left-4 top-1/2 transform -translate-y-1/2 text-gray-400 z-10" />
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search AI Models"
           className="pl-12 bg-transparent w-[24rem] pr-3 py-3 text-md text-gray-400 rounded-full shadow-sm border-gray-800 focus:ring-0 border focus:outline-none"
         />
       </div>
