@@ -7,6 +7,7 @@ import ModalProvider from "@/components/ModalProvider";
 import ToasterProvider from "@/components/ToasterProvider";
 import CrispProvider from "@/components/CrispProvider";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <CrispProvider />
-          <body className={inter.className}>
+          <body className={cn(inter.className, "bg-[#090C2A]")}>
             <ModalProvider />
             <ToasterProvider />
             {children}
