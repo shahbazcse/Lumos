@@ -14,7 +14,7 @@ import ShareButton from "./ShareButton";
 const NavBar = () => {
   const isLimit = true;
   return (
-    <div className="h-24 flex items-center justify-between px-10 w-full border-b border-gray-800">
+    <div className="h-24 flex sticky top-0 z-[999] bg-opacity-80 backdrop-filter backdrop-blur-lg items-center justify-between px-10 w-full border-b border-gray-800">
       <div className="relative h-12 w-fit">
         <LuSearch className="absolute h-5 w-5 left-4 top-1/2 transform -translate-y-1/2 text-gray-400 z-10" />
         <input
