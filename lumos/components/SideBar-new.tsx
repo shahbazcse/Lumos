@@ -83,7 +83,7 @@ const routes = [
 const SideBar = ({ email, name }: UserProp) => {
   const pathname = usePathname();
   return (
-    <div className="hidden justify-between items-center h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 border-r border-gray-800">
+    <div className="hidden justify-between items-center h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 border-r border-gray-800 overflow-auto">
       <div className="flex flex-col items-center">
         <div className="py-8">
           <Link href="/dashboard-new" className="flex items-center">

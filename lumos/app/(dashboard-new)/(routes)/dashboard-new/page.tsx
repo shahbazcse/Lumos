@@ -11,23 +11,23 @@ import React from "react";
 
 const DashboardPage = () => {
   return (
-    <div className="grid grid-cols-8 p-8 gap-8 items-end">
-      <div className="col-span-5 space-y-8">
-        <p className="text-3xl font-semibold pl-2">Explore latest AI models</p>
-        <div className="bg-indigo-950 bg-opacity-50 rounded-md px-2 py-3">
-          <ScrollArea className="h-[42.5rem] px-2 py-2">
-            <div className="grid grid-rows-1 gap-5 px-2">
-              {[...Array(10)].map((_, index) => (
-                <Card key={index} className="w-full h-[9.4rem] border-none">
-                  <CardContent></CardContent>
-                </Card>
-              ))}
-            </div>
-          </ScrollArea>
+    <div className="relative grid grid-cols-8 p-8 items-start gap-6">
+      <div className="col-span-5 space-y-7">
+        <p className="text-2xl font-semibold px-6 py-2.5 rounded-2xl w-fit bg-gray-950 bg-opacity-40 border border-slate-800 sticky z-10 top-28">
+          Explore latest AI models
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-4">
+          {[...Array(10)].map((_, index) => (
+            <Card key={index} className="aspect-square border-none rounded-xl">
+              <CardContent></CardContent>
+            </Card>
+          ))}
         </div>
       </div>
-      <div className="col-span-3 space-y-8">
-        <p className="text-xl font-semibold pl-2">Recent Generations</p>
+      <div className="col-span-3 space-y-8 sticky z-10 top-28">
+        <p className="text-lg font-semibold px-6 py-2.5 rounded-2xl w-fit bg-gray-950 bg-opacity-40 border border-slate-800">
+          Recent Generations
+        </p>
         <ScrollArea className="h-[44rem]">
           <Table className="bg-indigo-950 rounded-md bg-opacity-50 h-[9.68rem]">
             <TableBody>
