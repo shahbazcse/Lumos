@@ -12,7 +12,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const name = `${user.firstName} ${user.lastName}`;
 
   return (
-    <div className="h-full relative text-white">
+    <div className="h-full">
       <SideBar email={email} name={name} />
       <main className="md:pl-72">
         <NavBar />
