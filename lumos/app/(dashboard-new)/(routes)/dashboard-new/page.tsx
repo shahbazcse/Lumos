@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import React from "react";
 
 const DashboardPage = () => {
@@ -21,7 +15,20 @@ const DashboardPage = () => {
           <div className="grid grid-rows-1 gap-5 px-4 scroll-smooth transition-all">
             {[...Array(20)].map((_, index) => (
               <Card key={index} className="border-none rounded-xl h-[14.1rem]">
-                <CardContent></CardContent>
+                <div className="h-full flex items-end justify-end">
+                  <div className="flex flex-col items-start space-y-4 m-4 justify-end">
+                    <p className="text-sm text-gray-500">
+                      Last Used: 12/04/2024
+                    </p>
+                    <p className="text-sm text-gray-500">Total Used: 25</p>
+                    <Button
+                      className="rounded-full px-6 py-2"
+                      variant="outline"
+                    >
+                      Generate art
+                    </Button>
+                  </div>
+                </div>
               </Card>
             ))}
           </div>
@@ -39,7 +46,7 @@ const DashboardPage = () => {
         <Table className="bg-indigo-950 rounded-md bg-opacity-50 h-[9.68rem]">
           <TableBody>
             {[...Array(7)].map((item, index) => (
-              <TableRow key={0} className="h-24">
+              <TableRow key={index} className="h-24">
                 <TableCell className="font-medium">Hello</TableCell>
               </TableRow>
             ))}
